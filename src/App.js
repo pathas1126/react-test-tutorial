@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Counter from "./components/Counter";
+import NameForm from "./components/NameForm";
+import NameList from "./components/NameList";
 
 function App() {
+  const [names, setNames] = useState(["하이맨", "바이맨"]);
+  const onInsert = (name) => {
+    setNames((prevNames) => prevNames.concat(name));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Counter />
+      <hr />
+      <h1>이름 목록</h1>
+      <NameForm onInsert={onInsert} />
+      <NameList names={names} />
     </div>
   );
 }
